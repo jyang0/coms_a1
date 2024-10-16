@@ -1,0 +1,31 @@
+## HW 1
+
+Name and UNI: Jeffrey Yang (by2346) [no teammate]
+
+### 1. Lexical grammar ###
+
+The token types are defined as follows, with regex, and in order of precedence:
+- KEYWORD: `for|in|range|print|lambda|return|while`
+- OPERATOR: `(==|=|+|-|[*]|[/])`
+- IDENTFIER: `[a-z_]+`
+- L_PARENS: `[(]`
+- R_PARENS: `[)]`
+- COLON: `[:]`
+- STR_LITERAL: `'[^']*'`
+- INT_LITERAL: `[0-9]+`
+- SPACE: `( |\t)`
+- NEWLINE: `(\r)*\n`
+
+### 2. Algorithm ###
+
+Please see tokenizer.py. The program will scan and output tokens, and detect errors. Parsing is done manually, and uses an explicit regex-like code syntax, but simpler and without backtracking. Please see matcher.py. No external library or regex library was used.
+
+### 3. Sample programs ###
+
+Please see or run hw1.py for sample programs. Each program's parsing behavior is printed by the program.
+
+### 4. Shell script ###
+
+Note: Standard Python 3 is required, with the `python` alias available. No external libraries are needed.
+
+To run: `python hw1.py` or `./run_hw1.sh`
