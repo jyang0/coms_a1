@@ -11,29 +11,37 @@ class TokenType(IntEnum):
 	L_PARENS = auto()
 	R_PARENS = auto()
 	COLON = auto()
+	COMMA = auto()
 	SPACE = auto()
 	NEWLINE = auto()
 	STR_LITERAL = auto()
 	INT_LITERAL = auto()
+	# virtual tokens
+	END_STMT = auto()
+	START_BLOCK = auto()
+	END_BLOCK = auto()
 
 MATCHERS = {
  	# r'for|in|range|print|lambda',
 	TokenType.KEYWORD: matcher.Or(
-		matcher.StrMatch('for'),
-		matcher.StrMatch('in'),
-		matcher.StrMatch('range'),
-		matcher.StrMatch('print'),
+		matcher.StrMatch('if'),
+		matcher.StrMatch('while'),
 		matcher.StrMatch('lambda'),
 		matcher.StrMatch('return'),
 	),
 	# r'[+]|[-]|[*]|[/]',
 	TokenType.OPERATOR: matcher.Or(
+		matcher.StrMatch('+='),
+		matcher.StrMatch('-='),
 		matcher.StrMatch('=='),
+		matcher.StrMatch('!='),
 		matcher.StrMatch('='),
 		matcher.StrMatch('+'),
 		matcher.StrMatch('-'),
 		matcher.StrMatch('*'),
 		matcher.StrMatch('/'),
+		matcher.StrMatch('<'),
+		matcher.StrMatch('>'),
 	),
 	# r'[a-z_]+',
 	TokenType.IDENTIFIER: matcher.OnceOrMore(
@@ -42,6 +50,7 @@ MATCHERS = {
 	TokenType.L_PARENS: matcher.StrMatch('('),
 	TokenType.R_PARENS: matcher.StrMatch(')'),
 	TokenType.COLON: matcher.StrMatch(':'),
+	TokenType.COMMA: matcher.StrMatch(','),
 	# r"'[^']*'",
 	TokenType.STR_LITERAL: matcher.SeqMatch(
 		matcher.StrMatch("'"),

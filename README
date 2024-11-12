@@ -1,3 +1,51 @@
+# Class project #
+
+Name and UNI: Jeffrey Yang (by2346) [no teammate]
+
+## HW 2
+
+### 1. Grammer ###
+
+Note on grammar below:
+- Non-terminals from HW 1 below are reused
+- END_STMT, START_BLOCK, END_BLOCK are "virtual" tokens that I'll insert to replace spaces, newlines, and colons during preprocessing to make the grammer easier to write for my Python-like language. For example, I'll parse `if abc:\n  def\nghi` as if it were written as `if abc { def ; } ghi ;`.
+
+S -> STATEMENTS
+STATEMENTS -> STATEMENT END_STMT STATEMENTS | episilon
+STATEMENT ->  IF_STMT | RETURN_STMT | EXPRESSION | WHILE_STMT
+IF_STMT -> if EXPRESSION START_BLOCK STATEMENTS END_BLOCK
+WHILE_STMT -> while EXPRESSION START_BLOCK STATEMENTS END_BLOCK
+RETURN_STMT -> return EXPRESSION
+EXPRESSION -> IDENTIFIER | EXPRESSION OPERATOR EXPRESSION | FUNC_DEF | FUNC_CALL | LITERAL_EXPRESSION
+FUNC_DEF -> lambda IDENTIFIERS_LIST: START_BLOCK STATEMENTS END_BLOCK
+FUNC_CALL -> IDENTIFIER ( EXPRESSIONS_LIST )
+IDENTIFIERS_LIST -> IDENTIFIER | IDENTIFIER , IDENTIFIERS_LIST
+EXPRESSIONS_LIST -> EXPRESSION | EXPRESSION , EXPRESSIONS_LIST
+LITERAL_EXPRESSION -> STR_LITERAL | INT_LITERAL
+END_STMT -> ;
+START_BLOCK -> {
+END_BLOCK -> }
+
+### 2. Parsing algorithm ###
+
+Please see parser.py. I manually implemented a LL(n) algorithm, where I peek ahead to always select the correct production rule. After parsing the input, I prune and flatten the syntax tree into an AST that is much more easy to read.
+
+
+### 3. Sample input programs ###
+
+Please see hw2.py for sample programs and notes on their correct behaviors / error handling.
+
+### 4. Shell script ###
+
+Note: Standard Python 3 is required, with the `python` alias available. No external libraries are needed.
+
+To run: `python hw2.py` or `./run_hw2.sh`
+
+### 6. Demo video ###
+
+Please see URL:
+
+
 ## HW 1
 
 Name and UNI: Jeffrey Yang (by2346) [no teammate]
@@ -5,12 +53,13 @@ Name and UNI: Jeffrey Yang (by2346) [no teammate]
 ### 1. Lexical grammar ###
 
 The token types are defined as follows, with regex, and in order of precedence:
-- KEYWORD: `for|in|range|print|lambda|return|while`
+- KEYWORD: `for|in|range|lambda|return|while`
 - OPERATOR: `(==|=|+|-|[*]|[/])`
 - IDENTFIER: `[a-z_]+`
 - L_PARENS: `[(]`
 - R_PARENS: `[)]`
 - COLON: `[:]`
+- COMMA: `[,]`
 - STR_LITERAL: `'[^']*'`
 - INT_LITERAL: `[0-9]+`
 - SPACE: `( |\t)`

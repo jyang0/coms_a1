@@ -47,20 +47,21 @@ while i == 0:
 '''),
 ]
 
-n = 1
-for desc, p in SAMPLE_PROGRAMS:
-    print(f'======= Program #{n} =======')
-    print(f'Description: {desc}')
-    print('Program:')
-    print(p)
-    print()
-    print('Tokens:')
-    try:
-        t = tokenizer.tokenize(p)
-        for tt in t:
-            print(f'  {tt}')
-    except ValueError as e:
-        print(f'Error encountered during parsing: {e}')
-    print()
-    print()
-    n += 1
+if __name__ == '__main__':
+    n = 1
+    for desc, p in SAMPLE_PROGRAMS:
+        print(f'======= Program #{n} =======')
+        print(f'Description: {desc}')
+        print('Program:')
+        print(p)
+        print()
+        print('Tokens:')
+        try:
+            t = tokenizer.tokenize(p)
+            for tt in t:
+                print(f'  {tt}')
+        except ValueError as e:
+            print(f'Error encountered during parsing: {e}')
+        print()
+        print()
+        n += 1
