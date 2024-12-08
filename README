@@ -1,8 +1,23 @@
 # Class project #
 
-Name and UNI: Jeffrey Yang (by2346) [no teammate]
+Name and UNI: Bangding (Jeffrey) Yang (by2346) [no teammate]
 
-## HW 2
+## HW 3 ##
+
+### 1. Algorithm ###
+Please see codegen.py. I have a recursive code generator function that converts my AST from HW2 into valid Python in a single pass, and also helpers to write this Python file the current directory and execute it.
+
+### 2. Sample input programs ###
+Please see hw3.py, which can be run with `python hw3.py` (standard Python 3, no extra dependencies).
+Sample #4 shows the semantic error detected by referencing an unknown variable. Sample #5 shows simple expression simplification and dead code elimination (need to inspect generated Python code). Running hw3.py will output the generated Python for each sample as a `__tmp_gen_{n}.py` file in the current directory.
+
+### 3. Shell script ###
+Please use `python hw3.py` (standard Python 3, no extra dependencies).
+
+### 6. Demo video ###
+Please see URL: https://1drv.ms/v/s!AjliEfUjDhjQgYRzpkqYzY9CZxZQ4w?e=lRChEr (public)
+
+## HW 2 ##
 
 ### 1. Grammer ###
 
